@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
+      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="artem.konovalov">
+        <ext:createCollection collectionName="talks">
+            <ext:options>
+                {
+                    validator: {
+                        $jsonSchema: {
+                            bsonType: "object",
+                            required: ["id", "author", "title", "link", "views", "likes"],
+                            properties: {
+                                author: {
+                                    bsonType: "string",
+                                    description: "The Name"
+                                },
+                                title: {
+                                    bsonType: "string",
+                                    description: "The Name"
+                                },
+                                link: {
+                                    bsonType: "string",
+                                    description: "The Address"
+                                },
+                                views: {
+                                    bsonType: "string",
+                                    description: "The Address"
+                                }
+                                likes: {
+                                    bsonType: "string",
+                                    description: "The Address"
+                                }
+                            }
+                        }
+                    },
+                    validationAction: "warn",
+                    validationLevel: "strict"
+                }
+            </ext:options>
+        </ext:createCollection>
+<!--        <ext:createIndex collectionName="createIndexTest">-->
+<!--            <ext:keys>-->
+<!--                { clientId: 1, type: 1}-->
+<!--            </ext:keys>-->
+<!--            <ext:options>-->
+<!--                {unique: true, name: "ui_tppClientId"}-->
+<!--            </ext:options>-->
+<!--        </ext:createIndex>-->
+
+<!--        <ext:createIndex collectionName="createIndexNoOptionsTest">-->
+<!--            <ext:keys>-->
+<!--                { clientId: 1, type: 1}-->
+<!--            </ext:keys>-->
+<!--        </ext:createIndex>-->
+    </changeSet>
+</databaseChangeLog>
