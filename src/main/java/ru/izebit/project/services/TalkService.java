@@ -1,8 +1,5 @@
-package com.iodigital.project.services;
+package ru.izebit.project.services;
 
-import com.iodigital.project.dto.TalkDto;
-import com.iodigital.project.models.Talk;
-import com.iodigital.project.repositories.TalkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -10,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import ru.izebit.project.dto.TalkDto;
+import ru.izebit.project.models.Talk;
+import ru.izebit.project.repositories.TalkRepository;
 
 import java.util.Map;
 import java.util.Objects;

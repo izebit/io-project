@@ -1,9 +1,5 @@
-package com.iodigital.project.controllers;
+package ru.izebit.project.controllers;
 
-import com.iodigital.project.ApplicationLauncher;
-import com.iodigital.project.dto.TalkDto;
-import com.iodigital.project.repositories.TalkRepository;
-import com.iodigital.project.services.TalkService;
 import de.bwaldvogel.mongo.MongoServer;
 import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
 import org.junit.jupiter.api.AfterEach;
@@ -21,6 +17,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import ru.izebit.project.ApplicationLauncher;
+import ru.izebit.project.dto.TalkDto;
+import ru.izebit.project.repositories.TalkRepository;
+import ru.izebit.project.services.TalkService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

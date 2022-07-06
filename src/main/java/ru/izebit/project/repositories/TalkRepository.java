@@ -1,7 +1,7 @@
-package com.iodigital.project.repositories;
+package ru.izebit.project.repositories;
 
-import com.iodigital.project.models.Talk;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
+import ru.izebit.project.models.Talk;
 
 /**
  * @author <a href="mailto:izebit@gmail.com">Artem Konovalov</a> <br/>

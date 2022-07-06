@@ -1,4 +1,4 @@
-package com.iodigital.project.dto;
+package ru.izebit.project.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;

@@ -1,4 +1,4 @@
-package com.iodigital.project.models;
+package ru.izebit.project.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

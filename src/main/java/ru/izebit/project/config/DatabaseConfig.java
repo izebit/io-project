@@ -1,4 +1,4 @@
-package com.iodigital.project.config;
+package ru.izebit.project.config;
 
 import liquibase.Liquibase;
 import liquibase.database.DatabaseFactory;
