@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @Document(collection = "talks")
 public class Talk {
     @Id
-    private Long id;
+    private String id;
     @Version
     private Long version;
     @Field("title")

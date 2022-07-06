@@ -2,19 +2,20 @@ package com.iodigital.project.config;
 
 import liquibase.Liquibase;
 import liquibase.database.DatabaseFactory;
-import liquibase.exception.LiquibaseException;
 import liquibase.ext.mongodb.database.MongoLiquibaseDatabase;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * @author <a href="mailto:izebit@gmail.com">Artem Konovalov</a> <br/>
  * Date: 05.07.2022
  */
 @Configuration
+@Profile("!test")
 public class DatabaseConfig {
 
     @Bean

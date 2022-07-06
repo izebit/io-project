@@ -1,10 +1,7 @@
 package com.iodigital.project.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
-import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.lang.NonNull;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -14,6 +11,9 @@ import java.time.LocalDate;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@With
 public class TalkDto {
     private String title;
     private String author;

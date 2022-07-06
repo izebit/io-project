@@ -9,7 +9,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
-import java.util.function.Function;
 
 /**
  * @author <a href="mailto:izebit@gmail.com">Artem Konovalov</a> <br/>
@@ -22,25 +21,17 @@ public class TalkController {
     private final TalkService talkService;
 
     @PostMapping
-    public Mono<ResponseEntity<Long>> create(@RequestBody TalkDto talk) {
+    public Mono<ResponseEntity<String>> create(@RequestBody TalkDto talk) {
         return talkService
                 .create(talk)
                 .map(ResponseEntity::ok);
     }
 
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Void>> update(@RequestBody TalkDto talk, @PathVariable long id) {
+    public Mono<ResponseEntity<TalkDto>> update(@RequestBody TalkDto talk, @PathVariable String id) {
         return talkService.update(talk, id)
-                .map(result -> {
-                    if (result)
-                        return ResponseEntity
-                                .ok()
-                                .build();
-                    else
-                        return ResponseEntity
-                                .notFound()
-                                .build();
-                });
+                .map(ResponseEntity::ok)
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @GetMapping
@@ -49,18 +40,13 @@ public class TalkController {
     }
 
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> remove(@PathVariable("id") long id) {
-        return talkService
-                .remove(id)
+    public Mono<ResponseEntity<Void>> remove(@PathVariable("id") String id) {
+        return talkService.remove(id)
                 .map(result -> {
                     if (result)
-                        return ResponseEntity
-                                .ok()
-                                .build();
+                        return ResponseEntity.ok().build();
                     else
-                        return ResponseEntity
-                                .notFound()
-                                .build();
+                        return ResponseEntity.notFound().build();
                 });
     }
 }
