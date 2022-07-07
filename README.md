@@ -1,5 +1,5 @@
-### talks service
-the service has rest api. It is written in java, data is stored in mongodb. Also, liquibase is used to data migration.
+## TedTalks service
+the service has rest api. It is written in java, data is stored in mongodb. Also, liquibase is used for data migration.
 
 ### how to run it
 run:  
