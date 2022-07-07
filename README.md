@@ -6,7 +6,7 @@ run:
 ```shell
 docker-compose up
 ```
-and check [https://localhost:8080](https://localhost:8080)
+and check [http://localhost:8080/api/v1/talks?author=Mona](http://localhost:8080/api/v1/talks?author=Mona)
 
 ### how to build it
 run:
