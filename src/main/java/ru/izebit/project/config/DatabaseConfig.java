@@ -22,8 +22,8 @@ public class DatabaseConfig {
     @SneakyThrows
     public MongoLiquibaseDatabase mongoLiquibaseDatabase(@Value("${spring.data.mongodb.host}") String host,
                                                          @Value("${spring.data.mongodb.port}") long port,
-                                                         @Value("${spring.data.mongodb.username}") String username,
-                                                         @Value("${spring.data.mongodb.password}") String password,
+                                                         @Value("${spring.data.mongodb.username:#{null}}") String username,
+                                                         @Value("${spring.data.mongodb.password:#{null}}") String password,
                                                          @Value("${spring.data.mongodb.database}") String database) {
         return (MongoLiquibaseDatabase) DatabaseFactory
                 .getInstance()

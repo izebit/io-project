@@ -13,6 +13,8 @@ import ru.izebit.project.repositories.TalkRepository;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author <a href="mailto:izebit@gmail.com">Artem Konovalov</a> <br/>
@@ -40,7 +42,6 @@ public class TalkService {
     public Mono<String> create(final TalkDto talk) {
         return Mono.just(
                         Talk.builder()
-                                .version(0L)
                                 .author(talk.getAuthor())
                                 .title(talk.getTitle())
                                 .date(talk.getDate())
@@ -77,7 +78,14 @@ public class TalkService {
     }
 
 
-    public Flux<TalkDto> search(final Map<String, String> searchParams) {
+    public Flux<TalkDto> search(final Map<String, String> searchParamsMap) {
+        var fields = Set.of("author", "title", "views", "likes");
+        var searchParams = searchParamsMap
+                .entrySet()
+                .stream()
+                .filter(e -> fields.contains(e.getKey().toLowerCase()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
         if (searchParams.isEmpty())
             return talkRepository
                     .findAll()
@@ -85,7 +93,7 @@ public class TalkService {
 
         var probe = new Talk();
         searchParams.forEach((key, value) -> {
-            switch (StringUtils.uncapitalize(key)) {
+            switch (key.toLowerCase()) {
                 case "author" -> probe.setAuthor(value);
                 case "title" -> probe.setTitle(value);
                 case "views" -> probe.setViews(Long.parseLong(value));
@@ -97,7 +105,9 @@ public class TalkService {
                 .findAll(Example.of(probe, ExampleMatcher
                         .matchingAll()
                         .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
-                        .withIgnoreCase()))
+                        .withIgnoreNullValues()
+                        .withIgnorePaths("id", "date", "link")
+                        .withIgnoreCase("author", "title")))
                 .map(TalkService::map);
     }
 

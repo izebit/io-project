@@ -1,9 +1,10 @@
 plugins {
     id 'java'
     id "org.springframework.boot" version '2.7.1'
+    id "com.palantir.docker" version "0.22.1"
 }
-group 'com.iodigital.project'
-version '1.0-SNAPSHOT'
+group 'ru.izebit.project'
+version '1.0'
 sourceCompatibility = '14'
 
 configurations {
@@ -14,6 +15,11 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+bootJar {
+    launchScript()
+    archiveFileName.set("app.jar")
 }
 
 apply plugin: "io.spring.dependency-management"

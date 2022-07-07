@@ -24,8 +24,6 @@ import java.time.LocalDate;
 public class Talk {
     @Id
     private String id;
-    @Version
-    private Long version;
     @Field("title")
     @NonNull
     private String title;
